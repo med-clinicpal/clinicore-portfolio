@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #00B4D8;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+
+  --color-bg: #f9fafb;
+  --color-bg-alt: #ffffff;
+  --color-bg-elevated: rgba(255, 255, 255, 0.6);
+
+  --color-border: #e5e7eb;
+  --color-shadow: rgba(0, 0, 0, 0.05);
+
+  --color-sider: #ffffff;
+  --sider-width: 16rem;
+  /* default expanded size */
+
+  --color-status-confirmed: #00B4D8;
+  /* matches primary */
+  --color-status-arrived: #3DB8C0;
+  /* slightly darker teal */
+  --color-status-completed: #7DD3FC;
+  /* light sky blue */
+  --color-status-cancelled: #FCA5A5;
+  /* soft red */
+  --color-status-no-show: #F87171;
+  /* coral red */
+
+  /* Payment status colors */
+  --color-payment-paid: #00B4D8;
+  /* primary */
+  --color-payment-unpaid: #FCA5A5;
+  /* soft red */
+  --color-payment-charity: #C4B5FD;
+  /* soft violet */
 }
 
+
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Align colors to your :root naming */
+  --color-primary: var(--color-primary);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-bg: var(--color-bg);
+  --color-bg-alt: var(--color-bg-alt);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-border: var(--color-border);
+  --color-shadow: var(--color-shadow);
+  --color-sider: var(--color-sider);
+
+  /* Custom status & payment colors */
+  --color-status-confirmed: var(--color-status-confirmed);
+  --color-status-arrived: var(--color-status-arrived);
+  --color-status-completed: var(--color-status-completed);
+  --color-status-cancelled: var(--color-status-cancelled);
+  --color-status-no-show: var(--color-status-no-show);
+
+  --color-payment-paid: var(--color-payment-paid);
+  --color-payment-unpaid: var(--color-payment-unpaid);
+  --color-payment-charity: var(--color-payment-charity);
+
+  /* Font families mapped to root vars */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+
+.dark {
+  --color-text: #f9fafb;
+  --color-text-muted: #9ca3af;
+
+  --color-bg: #1f2937;
+  --color-bg-alt: #111827;
+  --color-bg-elevated: rgba(17, 24, 39, 0.6);
+
+  --color-border: #374151;
+  --color-shadow: rgba(0, 0, 0, 0.2);
+
+  --color-sider: #111827;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Utility for any extra glassy wrapper */
+.glass {
+  background: var(--color-bg-elevated);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px var(--color-shadow);
+  border-radius: 5px;
+}
+
+
+/* ensure page background/text honor your vars */
+html,
+body,
+#__next {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color .3s, color .3s;
+  margin: 0;
+}
+
+
+.dashboard-layout {
+  min-height: 100vh;
+  display: flex;
+}
+
+.dashboard-sidebar {
+  background: var(--bg);
+}
+
+.sidebar-logo {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.sidebar-collapse {
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0 24px;
+}
+
+.dashboard-content {
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+.toolsContainer {
+  position: relative;
+}
+
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
 }

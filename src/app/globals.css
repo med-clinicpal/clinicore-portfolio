@@ -78,24 +78,23 @@
 
 .dark {
   /* Dark mode overrides */
-  --color-text: #CAF0F8;        /* Pale blue text on dark */
-  --color-text-muted: #90E0EF;  /* Light blue muted text */
-  --color-text-light: #03045E;  /* Navy text for light elements */
+  --color-text: #ffffff;        /* White text on dark */
+  --color-text-muted: #9ca3af;  /* Light gray muted text */
+  --color-text-light: #000000;  /* Black text for light elements */
 
-  --color-bg: #03045E;          /* Navy background */
-  --color-bg-alt: #007786;     /* Teal for sections */
-  --color-bg-elevated: rgba(0, 119, 134, 0.6); /* Translucent teal */
-  --color-bg-hero: linear-gradient(135deg, #007786 0%, #00B4D8 100%);
+  --color-bg: #1f2937;          /* Dark gray background */
+  --color-bg-alt: #374151;     /* Slightly lighter gray for sections */
+  --color-bg-elevated: rgba(55, 65, 81, 0.6); /* Translucent gray */
 
-  --color-border: #00B4D8;     /* Bright blue borders */
-  --color-shadow: rgba(0, 180, 216, 0.2); /* Blue shadow */
+  --color-border: #4b5563;     /* Gray borders */
+  --color-shadow: rgba(0, 0, 0, 0.3); /* Dark shadow */
 
-  --color-sider: #03045E;
+  --color-sider: #1f2937;
 
-  /* Dark mode button adjustments */
-  --color-btn-primary: #90E0EF;
-  --color-btn-primary-hover: #CAF0F8;
-  --color-btn-secondary: #007786;
+  /* Dark mode button adjustments - keep primary blue */
+  --color-btn-primary: #00B4D8;
+  --color-btn-primary-hover: #007786;
+  --color-btn-secondary: #4b5563;
   --color-btn-secondary-hover: #00B4D8;
 }
 
@@ -116,6 +115,28 @@ body,
   color: var(--color-text);
   transition: background-color .3s, color .3s;
   margin: 0;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Fix text alignment for RTL */
+[dir="rtl"] .text-center {
+  text-align: center;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
 }
 
 

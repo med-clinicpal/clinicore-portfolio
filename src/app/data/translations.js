@@ -3,8 +3,8 @@ export const translations = {
     // Navigation & General
     home: "Home",
     features: "Features", 
-    about: "About",
-    contact: "Contact",
+    about: "About Us",
+    contact: "Contact Us",
     getDemo: "Get Demo",
     learnMore: "Learn More",
     requestDemo: "Request Demo",
@@ -72,6 +72,15 @@ export const translations = {
     message: "Message",
     sendMessage: "Send Message",
     
+    // About Section
+    aboutTitle: "About CliniCore.ai",
+    aboutSubtitle: "Revolutionizing healthcare management with cutting-edge technology",
+    aboutDescription: "CliniCore.ai was founded with a mission to transform how healthcare providers manage their practices. We combine years of medical industry expertise with advanced artificial intelligence to create solutions that truly make a difference in patient care.",
+    aboutVision: "Our Vision",
+    aboutVisionText: "To become the leading AI-powered healthcare management platform that empowers medical professionals to provide exceptional patient care while streamlining their operations.",
+    aboutMission: "Our Mission", 
+    aboutMissionText: "We're dedicated to developing innovative healthcare technology that reduces administrative burden, improves diagnostic accuracy, and enhances the overall healthcare experience for both providers and patients.",
+
     // Footer
     allRightsReserved: "All rights reserved",
     
@@ -85,7 +94,7 @@ export const translations = {
     // Navigation & General
     home: "الرئيسية",
     features: "الميزات",
-    about: "حول",
+    about: "من نحن",
     contact: "اتصل بنا",
     getDemo: "احصل على تجربة",
     learnMore: "اعرف المزيد",
@@ -154,6 +163,15 @@ export const translations = {
     message: "الرسالة",
     sendMessage: "إرسال الرسالة",
     
+    // About Section  
+    aboutTitle: "حول CliniCore.ai",
+    aboutSubtitle: "ثورة في إدارة الرعاية الصحية بتقنية متطورة",
+    aboutDescription: "تأسست CliniCore.ai برسالة تهدف إلى تحويل كيفية إدارة مقدمي الرعاية الصحية لممارساتهم. نحن نجمع بين سنوات من الخبرة في الصناعة الطبية والذكاء الاصطناعي المتقدم لإنشاء حلول تحدث فرقًا حقيقيًا في رعاية المرضى.",
+    aboutVision: "رؤيتنا",
+    aboutVisionText: "أن نصبح منصة إدارة الرعاية الصحية الرائدة المدعومة بالذكاء الاصطناعي التي تمكن المهنيين الطبيين من تقديم رعاية استثنائية للمرضى مع تبسيط عملياتهم.",
+    aboutMission: "مهمتنا",
+    aboutMissionText: "نحن ملتزمون بتطوير تقنية رعاية صحية مبتكرة تقلل من الأعباء الإدارية وتحسن دقة التشخيص وتعزز تجربة الرعاية الصحية الشاملة لكل من مقدمي الخدمة والمرضى.",
+
     // Footer
     allRightsReserved: "جميع الحقوق محفوظة",
     

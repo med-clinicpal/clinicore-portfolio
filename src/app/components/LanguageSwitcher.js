@@ -26,7 +26,7 @@ export default function LanguageSwitcher({ lang }) {
   };
 
   return (
-    <div className="relative inline-block mr-auto lg:ml-auto lg:mr-0 flex items-center space-x-4">
+    <div className="flex items-center space-x-3">
       {/* Dark Mode Toggle */}
       <DarkModeToggle />
       
@@ -34,7 +34,7 @@ export default function LanguageSwitcher({ lang }) {
       <div className="group relative inline-block">
         {/* Button */}
         <button
-          className="text-xl uppercase font-bold flex items-center space-x-1 focus:outline-none"
+          className="text-lg uppercase font-bold flex items-center focus:outline-none py-2 space-x-1"
         >
           <span>{lang.toUpperCase()}</span>
           {/* Modern Caret */}
@@ -50,7 +50,7 @@ export default function LanguageSwitcher({ lang }) {
         </button>
 
         {/* Dropdown */}
-        <ul className="absolute hidden group-hover:block top-full right-0 mt-0 w-24 bg-bg border border-[1px] border-bg-alt rounded-md shadow-lg text-base font-bold z-10">
+        <ul className="absolute hidden group-hover:block top-full right-0 mt-1 w-24 bg-bg border border-border rounded-lg shadow-lg text-base font-bold z-10">
           {locales.map((locale) => (
             <li
               key={locale}

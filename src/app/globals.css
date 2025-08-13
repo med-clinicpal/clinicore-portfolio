@@ -1,39 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #00B4D8;
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
+  /* CliniCore.ai Brand Colors */
+  --color-navy: #03045E;        /* Deep navy for headers, primary text */
+  --color-teal: #007786;        /* Professional teal for accents */
+  --color-primary: #00B4D8;     /* Bright blue for CTAs, links */
+  --color-light-blue: #90E0EF; /* Light blue for highlights */
+  --color-pale-blue: #CAF0F8;  /* Very light blue for backgrounds */
 
-  --color-bg: #f9fafb;
-  --color-bg-alt: #ffffff;
-  --color-bg-elevated: rgba(255, 255, 255, 0.6);
+  /* Text Colors */
+  --color-text: #03045E;        /* Navy for primary text */
+  --color-text-muted: #007786;  /* Teal for secondary text */
+  --color-text-light: #ffffff;  /* White text for dark backgrounds */
 
-  --color-border: #e5e7eb;
-  --color-shadow: rgba(0, 0, 0, 0.05);
+  /* Background Colors */
+  --color-bg: #ffffff;          /* Clean white main background */
+  --color-bg-alt: #CAF0F8;     /* Pale blue for sections */
+  --color-bg-elevated: rgba(202, 240, 248, 0.6); /* Translucent pale blue */
+  --color-bg-hero: linear-gradient(135deg, #03045E 0%, #007786 100%);
+
+  /* UI Elements */
+  --color-border: #90E0EF;     /* Light blue borders */
+  --color-shadow: rgba(3, 4, 94, 0.1); /* Navy shadow */
 
   --color-sider: #ffffff;
   --sider-width: 16rem;
-  /* default expanded size */
 
+  /* Status Colors */
   --color-status-confirmed: #00B4D8;
-  /* matches primary */
-  --color-status-arrived: #3DB8C0;
-  /* slightly darker teal */
-  --color-status-completed: #7DD3FC;
-  /* light sky blue */
+  --color-status-arrived: #007786;
+  --color-status-completed: #90E0EF;
   --color-status-cancelled: #FCA5A5;
-  /* soft red */
   --color-status-no-show: #F87171;
-  /* coral red */
 
-  /* Payment status colors */
+  /* Payment Colors */
   --color-payment-paid: #00B4D8;
-  /* primary */
   --color-payment-unpaid: #FCA5A5;
-  /* soft red */
-  --color-payment-charity: #C4B5FD;
-  /* soft violet */
+  --color-payment-charity: #90E0EF;
+
+  /* Button Colors */
+  --color-btn-primary: #00B4D8;
+  --color-btn-primary-hover: #007786;
+  --color-btn-secondary: #90E0EF;
+  --color-btn-secondary-hover: #00B4D8;
 }
 
 
@@ -68,17 +77,26 @@
 
 
 .dark {
-  --color-text: #f9fafb;
-  --color-text-muted: #9ca3af;
+  /* Dark mode overrides */
+  --color-text: #CAF0F8;        /* Pale blue text on dark */
+  --color-text-muted: #90E0EF;  /* Light blue muted text */
+  --color-text-light: #03045E;  /* Navy text for light elements */
 
-  --color-bg: #1f2937;
-  --color-bg-alt: #111827;
-  --color-bg-elevated: rgba(17, 24, 39, 0.6);
+  --color-bg: #03045E;          /* Navy background */
+  --color-bg-alt: #007786;     /* Teal for sections */
+  --color-bg-elevated: rgba(0, 119, 134, 0.6); /* Translucent teal */
+  --color-bg-hero: linear-gradient(135deg, #007786 0%, #00B4D8 100%);
 
-  --color-border: #374151;
-  --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-border: #00B4D8;     /* Bright blue borders */
+  --color-shadow: rgba(0, 180, 216, 0.2); /* Blue shadow */
 
-  --color-sider: #111827;
+  --color-sider: #03045E;
+
+  /* Dark mode button adjustments */
+  --color-btn-primary: #90E0EF;
+  --color-btn-primary-hover: #CAF0F8;
+  --color-btn-secondary: #007786;
+  --color-btn-secondary-hover: #00B4D8;
 }
 
 /* Utility for any extra glassy wrapper */

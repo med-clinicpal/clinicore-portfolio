@@ -1,6 +1,7 @@
-"use client"; // Ensure the component works client-side in Next.js
+"use client";
 
 import { usePathname } from 'next/navigation';
+import DarkModeToggle from './DarkModeToggle';
 
 const locales = ['ar', 'en'];
 
@@ -25,12 +26,15 @@ export default function LanguageSwitcher({ lang }) {
   };
 
   return (
-    <div className=" relative inline-block mr-auto lg:ml-auto lg:mr-0">
-      {/* Button and dropdown container */}
+    <div className="relative inline-block mr-auto lg:ml-auto lg:mr-0 flex items-center space-x-4">
+      {/* Dark Mode Toggle */}
+      <DarkModeToggle />
+      
+      {/* Language Switcher */}
       <div className="group relative inline-block">
         {/* Button */}
         <button
-          className=" text-xl uppercase font-bold flex items-center space-x-1 focus:outline-none"
+          className="text-xl uppercase font-bold flex items-center space-x-1 focus:outline-none"
         >
           <span>{lang.toUpperCase()}</span>
           {/* Modern Caret */}
@@ -46,11 +50,11 @@ export default function LanguageSwitcher({ lang }) {
         </button>
 
         {/* Dropdown */}
-        <ul className="absolute hidden group-hover:block top-full right-0 mt-0 w-24 bg-bg  border border-[1px]  border-bg-alt rounded-md shadow-lg text-base font-bold z-10">
+        <ul className="absolute hidden group-hover:block top-full right-0 mt-0 w-24 bg-bg border border-[1px] border-bg-alt rounded-md shadow-lg text-base font-bold z-10">
           {locales.map((locale) => (
             <li
               key={locale}
-              className={`px-4 py-2 cursor-pointer transition-colors duration-200 hover:text-primary `}
+              className={`px-4 py-2 cursor-pointer transition-colors duration-200 hover:text-primary`}
               onClick={() => handleChange(locale)}
             >
               {locale.toUpperCase()}

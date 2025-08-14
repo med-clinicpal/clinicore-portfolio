@@ -21,12 +21,8 @@ export default async function Page(props) {
 
   // const data = await res.json();
   return (
-
-
-
-    <div className='w-[98%] min-h-[100vh]   p-0 mx-auto xsm:w-[400px] lg:w-full lg:p-4'>
-      <Home lang={lang} pricingData={null} />
-
+    <div className='w-[98%] min-h-[100vh] p-0 mx-auto xsm:w-[400px] lg:w-full lg:p-4'>
+      <Home lang={lang} />
     </div>
   );
 }

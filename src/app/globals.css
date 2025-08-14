@@ -24,19 +24,6 @@
   --color-shadow: rgba(3, 4, 94, 0.1); /* Navy shadow */
 
   --color-sider: #ffffff;
-  --sider-width: 16rem;
-
-  /* Status Colors */
-  --color-status-confirmed: #00B4D8;
-  --color-status-arrived: #007786;
-  --color-status-completed: #90E0EF;
-  --color-status-cancelled: #FCA5A5;
-  --color-status-no-show: #F87171;
-
-  /* Payment Colors */
-  --color-payment-paid: #00B4D8;
-  --color-payment-unpaid: #FCA5A5;
-  --color-payment-charity: #90E0EF;
 
   /* Button Colors */
   --color-btn-primary: #00B4D8;
@@ -58,20 +45,6 @@
   --color-shadow: var(--color-shadow);
   --color-sider: var(--color-sider);
 
-  /* Custom status & payment colors */
-  --color-status-confirmed: var(--color-status-confirmed);
-  --color-status-arrived: var(--color-status-arrived);
-  --color-status-completed: var(--color-status-completed);
-  --color-status-cancelled: var(--color-status-cancelled);
-  --color-status-no-show: var(--color-status-no-show);
-
-  --color-payment-paid: var(--color-payment-paid);
-  --color-payment-unpaid: var(--color-payment-unpaid);
-  --color-payment-charity: var(--color-payment-charity);
-
-  /* Font families mapped to root vars */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 
@@ -90,30 +63,14 @@
   --color-shadow: rgba(0, 0, 0, 0.3); /* Dark shadow */
 
   --color-sider: #1f2937;
-
-  /* Dark mode button adjustments - keep primary blue */
-  --color-btn-primary: #00B4D8;
-  --color-btn-primary-hover: #007786;
-  --color-btn-secondary: #4b5563;
-  --color-btn-secondary-hover: #00B4D8;
 }
 
-/* Utility for any extra glassy wrapper */
-.glass {
-  background: var(--color-bg-elevated);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px var(--color-shadow);
-  border-radius: 5px;
-}
-
-
-/* ensure page background/text honor your vars */
+/* Global styles */
 html,
-body,
-#__next {
+body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  transition: background-color .3s, color .3s;
+  transition: background-color 0.3s, color 0.3s;
   margin: 0;
 }
 
@@ -137,64 +94,4 @@ body,
 
 [dir="rtl"] .text-right {
   text-align: left;
-}
-
-
-.dashboard-layout {
-  min-height: 100vh;
-  display: flex;
-}
-
-.dashboard-sidebar {
-  background: var(--bg);
-}
-
-.sidebar-logo {
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.sidebar-collapse {
-  text-align: center;
-  padding: 8px;
-  cursor: pointer;
-  color: var(--text);
-}
-
-.dashboard-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background: var(--bg);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 0 24px;
-}
-
-.dashboard-content {
-  padding: 24px;
-  background: var(--bg);
-  color: var(--text);
-}
-
-
-.toolsContainer {
-  position: relative;
-}
-
-
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.toggle-thumb {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s ease;
 }

@@ -1,18 +1,18 @@
 'use client'
-import { useState, useEffect } from "react";
 import { getTranslations } from "../data/translations";
 import Navigation from "../components/Navigation";
 
-export default function Home({ pricingData, lang }) {
+export default function Home({ lang }) {
   const t = getTranslations(lang);
 
   return (
     <div className="min-h-screen bg-bg">
       
+      {/* Navigation */}
+      <Navigation lang={lang} />
+      
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex flex-col bg-bg">
-        {/* Navigation */}
-        <Navigation lang={lang} />
+      <section id="home" className="relative min-h-screen flex flex-col bg-bg pt-20">
 
         {/* Hero Content */}
         <div className="flex-1 flex items-center justify-center px-6 lg:px-12">
@@ -56,7 +56,7 @@ export default function Home({ pricingData, lang }) {
             <p className="text-xl text-text-muted max-w-3xl mx-auto">
               {t.featuresSubtitle}
             </p>
-          </div>
+          </div> 
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Patient Management */}

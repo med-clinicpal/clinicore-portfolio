@@ -1,11 +1,19 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getTranslations } from '../data/translations';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navigation({ lang }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const t = getTranslations(lang);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll); 
+  }, []);
 
   const menuItems = [
     { id: 'home', label: t.home, href: '#home' },
@@ -15,7 +23,7 @@ export default function Navigation({ lang }) {
     { id: 'contact', label: t.contact, href: '#contact' },
   ];
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ 
@@ -24,41 +32,62 @@ export default function Navigation({ lang }) {
       });
     }
     setIsMenuOpen(false);
-  };
+  }, []);
 
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="flex items-center justify-between p-6 lg:px-12 relative min-h-[80px]">
-        {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-xl leading-none">C</span>
+      <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300 ease-in-out ${
+        isScrolled 
+          ? 'bg-bg/95 backdrop-blur-md shadow-lg border-b border-border/20 py-3 px-6 lg:px-12' 
+          : 'bg-transparent py-6 px-6 lg:px-12'
+      } min-h-[80px]`}>
+        {/* Logo - Always on the left */}
+        <div className={`flex items-center transition-all duration-300 ${
+          lang === 'ar' ? 'space-x-3' : 'space-x-3'
+        }`}>
+          <div className={`bg-primary rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+            isScrolled ? 'w-8 h-8' : 'w-10 h-10'
+          }`}>
+            <span className={`text-white font-bold leading-none transition-all duration-300 ${
+              isScrolled ? 'text-lg' : 'text-xl'
+            }`}>C</span>
           </div>
-          <span className="text-text text-xl font-bold leading-none">CliniCore.ai</span>
+          <span className={`text-text font-bold leading-none transition-all duration-300 ${
+            isScrolled ? 'text-lg' : 'text-xl'
+          }`}>CliniCore.ai</span>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-8">
+        <div className={`hidden lg:flex items-center ${
+          lang === 'ar' ? 'space-x-reverse space-x-8' : 'space-x-8'
+        }`}>
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-text hover:text-primary transition-colors duration-200 font-medium py-2"
+              className={`text-text hover:text-primary transition-all duration-300 font-medium py-2 px-3 rounded-md relative group transform hover:scale-105 ${
+                isScrolled ? 'hover:bg-bg-alt/50' : 'hover:bg-transparent'
+              }`}
             >
               {item.label}
+              <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
             </button>
           ))}
         </div>
 
-        {/* Right Side - Language Switcher & Mobile Menu */}
+        {/* Right Side - Language Switcher & Mobile Menu - Always on the right */}
         <div className="flex items-center space-x-3">
           <LanguageSwitcher lang={lang} />
           
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg bg-bg-alt hover:bg-border transition-colors focus:outline-none flex items-center justify-center"
+            className={`lg:hidden p-2 rounded-lg transition-all duration-300 focus:outline-none flex items-center justify-center transform hover:scale-105 ${
+              isScrolled 
+                ? 'bg-bg-alt/80 hover:bg-border/80 backdrop-blur-sm' 
+                : 'bg-bg-alt hover:bg-border'
+            }`}
             aria-label="Toggle menu"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
@@ -71,7 +100,7 @@ export default function Navigation({ lang }) {
       </nav>
 
       {/* Mobile Sidebar */}
-      <div className={`fixed inset-0 z-50 lg:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+      <div className={`fixed inset-0 z-[60] lg:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         {/* Backdrop */}
         <div 
           className="absolute inset-0 bg-gray-600 bg-opacity-40 transition-opacity"
@@ -80,12 +109,19 @@ export default function Navigation({ lang }) {
         
         {/* Sidebar */}
         <div className={`relative h-full w-80 max-w-xs bg-bg shadow-xl transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          lang === 'ar' 
+            ? `${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} ml-auto`
+            : (isMenuOpen ? 'translate-x-0' : '-translate-x-full')
         }`}>
           
           {/* Sidebar Header */}
-          <div className="flex items-center justify-between p-6 border-b border-border">
-            <div className="flex items-center space-x-3">
+          <div className={`flex items-center justify-between p-6 border-b border-border ${
+            lang === 'ar' ? 'flex-row-reverse' : ''
+          }`}>
+            {/* Logo - Always on the left visually */}
+            <div className={`flex items-center ${
+              lang === 'ar' ? 'space-x-reverse space-x-3' : 'space-x-3'
+            }`}>
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">C</span>
               </div>

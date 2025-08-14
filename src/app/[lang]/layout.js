@@ -1,17 +1,16 @@
 import "../globals.css";
 import { getTranslations } from "../data/translations";
 
+const baseUrl = "https://clinicore.ai";
+
 const getMetadata = (lang) => {
   const t = getTranslations(lang);
-  
-  const baseUrl = "https://clinicore.ai";
   const imageUrl = `${baseUrl}/og-image.png`;
   
   return {
     title: t.metaTitle,
     description: t.metaDescription,
     keywords: t.metaKeywords,
-    author: "CliniCore.ai",
     robots: "index, follow",
     canonical: `${baseUrl}/${lang}`,
     og: {
@@ -19,7 +18,7 @@ const getMetadata = (lang) => {
       description: t.metaDescription,
       url: `${baseUrl}/${lang}`,
       type: "website",
-      site_name: "CliniCore.ai",
+      siteName: "CliniCore.ai",
       image: imageUrl,
       locale: lang === 'ar' ? 'ar_SA' : 'en_US',
     },
@@ -30,9 +29,7 @@ const getMetadata = (lang) => {
       site: "@CliniCoreAI",
       image: imageUrl,
     },
-    language: lang,
-    theme_color: "#00B4D8",
-    viewport: "width=device-width, initial-scale=1.0",
+    themeColor: "#00B4D8",
     alternates: {
       canonical: `${baseUrl}/${lang}`,
       languages: {
@@ -54,17 +51,17 @@ export async function generateMetadata({ params }) {
     title: metadata.title,
     description: metadata.description,
     keywords: metadata.keywords,
-    authors: [{ name: metadata.author }],
+    authors: [{ name: "CliniCore.ai" }],
     robots: metadata.robots,
-    themeColor: metadata.theme_color,
-    viewport: metadata.viewport,
+    themeColor: metadata.themeColor,
+    viewport: "width=device-width, initial-scale=1.0",
     alternates: metadata.alternates,
     openGraph: {
       title: metadata.og.title,
       description: metadata.og.description,
       url: metadata.og.url,
       type: metadata.og.type,
-      siteName: metadata.og.site_name,
+      siteName: metadata.og.siteName,
       images: [{
         url: metadata.og.image,
         width: 1200,
@@ -73,66 +70,62 @@ export async function generateMetadata({ params }) {
       }],
       locale: metadata.og.locale,
     },
-    twitter: {
-      card: metadata.twitter.card,
-      title: metadata.twitter.title,
-      description: metadata.twitter.description,
-      site: metadata.twitter.site,
-      images: [metadata.twitter.image],
-    },
+    twitter: metadata.twitter,
   };
 }
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CliniCore.ai",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "category": "Healthcare Management Software"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "CliniCore.ai",
+    "url": "https://clinicore.ai"
+  },
+  "featureList": [
+    "Patient Data Management",
+    "AI-Powered Medical Analysis", 
+    "Appointment Scheduling",
+    "Document Management",
+    "Medical Analytics Dashboard",
+    "HIPAA Compliant Security"
+  ]
+};
 
 export default async function RootLayout(props) {
   const params = await props.params;
   const { lang } = params;
   const { children } = props;
+  const metadata = getMetadata(lang);
+
+  const jsonLd = {
+    ...structuredData,
+    "description": metadata.description,
+    "url": `${baseUrl}/${lang}`,
+  };
 
   return (
-    <html lang={lang} dir={lang === "ar" ? 'rtl' : 'ltr'} suppressHydrationWarning={true}>
+    <html lang={lang}  suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="alternate" href="https://clinicore.ai/en" hrefLang="en" />
-        <link rel="alternate" href="https://clinicore.ai/ar" hrefLang="ar" />
-        <link rel="canonical" href={`https://clinicore.ai/${lang}`} />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="alternate" href={`${baseUrl}/en`} hrefLang="en" />
+        <link rel="alternate" href={`${baseUrl}/ar`} hrefLang="ar" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         
-        {/* Structured Data for Healthcare Software */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "CliniCore.ai",
-              "description": getMetadata(lang).description,
-              "url": `https://clinicore.ai/${lang}`,
-              "applicationCategory": "HealthApplication",
-              "operatingSystem": "Web Browser",
-              "offers": {
-                "@type": "Offer",
-                "category": "Healthcare Management Software"
-              },
-              "creator": {
-                "@type": "Organization",
-                "name": "CliniCore.ai",
-                "url": "https://clinicore.ai"
-              },
-              "featureList": [
-                "Patient Data Management",
-                "AI-Powered Medical Analysis", 
-                "Appointment Scheduling",
-                "Document Management",
-                "Medical Analytics Dashboard",
-                "HIPAA Compliant Security"
-              ]
-            })
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        suppressHydrationWarning={true}
-        className="antialiased"
-      >
+      <body className="antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>

@@ -34,12 +34,12 @@ export default function LanguageSwitcher({ lang }) {
       <div className="group relative inline-block">
         {/* Button */}
         <button
-          className="text-lg uppercase font-bold flex items-center focus:outline-none py-2 space-x-1"
+          className="text-lg uppercase font-bold flex items-center focus:outline-none py-2 px-2 space-x-1 rounded-md hover:bg-bg-alt transition-colors"
         >
           <span>{lang.toUpperCase()}</span>
           {/* Modern Caret */}
           <svg
-            className="w-4 h-4"
+            className="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -49,18 +49,22 @@ export default function LanguageSwitcher({ lang }) {
           </svg>
         </button>
 
-        {/* Dropdown */}
-        <ul className="absolute hidden group-hover:block top-full right-0 mt-1 w-24 bg-bg border border-border rounded-lg shadow-lg text-base font-bold z-10">
-          {locales.map((locale) => (
-            <li
-              key={locale}
-              className={`px-4 py-2 cursor-pointer transition-colors duration-200 hover:text-primary`}
-              onClick={() => handleChange(locale)}
-            >
-              {locale.toUpperCase()}
-            </li>
-          ))}
-        </ul>
+        {/* Dropdown - Extended hover area */}
+        <div className="absolute top-full right-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+          <ul className="w-24 bg-bg border border-border rounded-lg shadow-lg text-base font-bold overflow-hidden">
+            {locales.map((locale) => (
+              <li
+                key={locale}
+                className={`px-4 py-3 cursor-pointer transition-colors duration-200 hover:bg-bg-alt hover:text-primary ${
+                  locale === lang ? 'bg-primary text-white' : ''
+                }`}
+                onClick={() => handleChange(locale)}
+              >
+                {locale.toUpperCase()}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
